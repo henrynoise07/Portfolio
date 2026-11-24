@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
   <style>
     :root {
@@ -27,7 +27,7 @@
       --track: var(--cyan);
       --rail: 80px;
       --bar: 64px;
-      --display: "Space Grotesk", system-ui, sans-serif;
+      --display: "Fjalla One", "Arial Narrow", sans-serif;
       --body: "Instrument Sans", system-ui, sans-serif;
       --mono: "JetBrains Mono", ui-monospace, monospace;
       color-scheme: dark;
@@ -276,9 +276,9 @@
 
     .brand {
       font-family: var(--display);
-      font-weight: 700;
+      font-weight: 400;
       font-size: 1.5rem;
-      letter-spacing: -.03em
+      letter-spacing: .01em
     }
 
     .brand {
@@ -466,9 +466,9 @@
     h1,
     h2 {
       font-family: var(--display);
-      font-weight: 700;
-      letter-spacing: -.035em;
-      line-height: 1
+      font-weight: 400;
+      letter-spacing: .01em;
+      line-height: 1.08
     }
 
     #home {
@@ -661,7 +661,7 @@
 
     .fact dd {
       font-family: var(--display);
-      font-weight: 600;
+      font-weight: 400;
       font-size: 1.15rem;
       margin-top: 4px
     }
@@ -723,8 +723,8 @@
     .aka strong {
       font-family: var(--display);
       font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -.02em;
+      font-weight: 400;
+      letter-spacing: .01em;
       text-transform: none;
       color: var(--track);
       margin-left: 10px
@@ -780,9 +780,9 @@
 
     .item h3 {
       font-family: var(--display);
-      font-weight: 600;
+      font-weight: 400;
       font-size: 1.45rem;
-      letter-spacing: -.02em;
+      letter-spacing: .01em;
       margin: 4px 0 6px
     }
 
@@ -835,9 +835,9 @@
 
     .gallery-head h3 {
       font-family: var(--display);
-      font-weight: 600;
+      font-weight: 400;
       font-size: 1.45rem;
-      letter-spacing: -.02em
+      letter-spacing: .01em
     }
 
     .gallery-head .count {
@@ -1061,10 +1061,10 @@
 
     footer .big {
       font-family: var(--display);
-      font-weight: 700;
+      font-weight: 400;
       font-size: clamp(2.6rem, 9vw, 7rem);
-      letter-spacing: -.045em;
-      line-height: .95
+      letter-spacing: .01em;
+      line-height: 1.02
     }
 
     footer .big em {
@@ -1250,7 +1250,7 @@
     .sw strong {
       display: block;
       font-family: var(--display);
-      font-weight: 600
+      font-weight: 400
     }
 
     .sw code {
@@ -1370,7 +1370,7 @@
       }
 
       #home h1 {
-        font-size: clamp(3rem, 6.6vw, 6rem);
+        font-size: clamp(3.2rem, 7.4vw, 6.8rem);
         max-width: 54vw
       }
 
@@ -1671,7 +1671,7 @@
       <div class="swatches" id="accents"></div>
       <h3>Type</h3>
       <div class="type-row"><span>Display</span>
-        <div style="font-family:var(--display);font-weight:700;font-size:1.8rem;letter-spacing:-.03em">Space Grotesk 700
+        <div style="font-family:var(--display);font-weight:400;font-size:1.8rem;letter-spacing:.01em">Fjalla One 400
         </div>
       </div>
       <div class="type-row"><span>Body</span>
@@ -1761,12 +1761,22 @@
     const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
 
     const intro = $('.intro'), holes = $$('.intro .hole'), introText = $$('.intro p');
-    const introLen = () => reduce ? 0 : innerHeight;
+    let introDone = reduce;
+    const introLen = () => introDone ? 0 : innerHeight;
+    function introFinish() {
+      if (introDone) return;
+      const d = introLen();
+      introDone = true;
+      root.style.setProperty('--intro', '0px');
+      intro.hidden = true;
+      scrollTo({ top: Math.max(0, scrollY - d), behavior: 'instant' });
+    }
     function introFrame() {
-      const d = introLen(), t = d ? Math.min(1, scrollY / d) : 1;
+      if (introDone) return;
+      const d = introLen(), t = Math.min(1, scrollY / d);
       root.style.setProperty('--intro', d + 'px');
-      intro.hidden = t >= 1;
-      if (t >= 1) return;
+      intro.hidden = false;
+      if (t >= 1) return introFinish();
       const w = innerWidth, h = innerHeight;
       const s0 = Math.min(w * .5 / 43, h * .4 / 32), s1 = Math.max(w / 29, h / 9) * 1.15;
       const k = t * t * (3 - 2 * t), sc = s0 * Math.pow(s1 / s0, k);
@@ -1784,17 +1794,16 @@
       const from = scrollY, t0 = performance.now();
       (function step(now) {
         const p = Math.min(1, (now - t0) / 1100), e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
-        scrollTo({ top: from + (to - from) * e, behavior: 'instant' });
-        if (p < 1) requestAnimationFrame(step); else setTimeout(() => introBusy = false, 300);
+        if (!introDone) scrollTo({ top: from + (to - from) * e, behavior: 'instant' });
+        if (p >= 1) introFinish();
+        if (p < 1 && !introDone) requestAnimationFrame(step); else setTimeout(() => introBusy = false, 300);
       })(t0);
     }
     function introNudge(dir, e) {
-      const d = introLen();
-      if (!d || document.querySelector('dialog[open]')) return;
-      const down = dir > 0 && scrollY < d - 1, up = dir < 0 && scrollY > 0 && scrollY <= d + 1;
-      if (!introBusy && !down && !up) return;
+      if (introBusy) { if (e.cancelable) e.preventDefault(); return; }
+      if (introDone || dir <= 0) return;
       if (e.cancelable) e.preventDefault();
-      if (!introBusy) introRun(down ? d : 0);
+      introRun(introLen());
     }
     addEventListener('wheel', e => introNudge(e.deltaY, e), { passive: false });
     addEventListener('keydown', e => {
@@ -1809,7 +1818,8 @@
 
     function go(id) {
       const behavior = reduce ? 'auto' : 'smooth';
-      if (id === 'home') scrollTo({ top: introLen(), behavior });
+      introFinish();
+      if (id === 'home') scrollTo({ top: 0, behavior });
       else document.getElementById(id).scrollIntoView({ behavior, block: 'start' });
     }
 
