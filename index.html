@@ -13,24 +13,33 @@
     rel="stylesheet">
   <style>
     :root {
-      --ink: #0B0D12;
-      --surface: #141821;
-      --raised: #1B2130;
-      --line: #2A3142;
-      --text: #E9EDF5;
-      --muted: #8D96AB;
-      --cyan: #22D3EE;
-      --violet: #8B6CFF;
-      --coral: #FF6B5E;
-      --lime: #B8F53D;
-      --cur: #22D3EE;
-      --track: var(--cyan);
+      --ink: #C6FA58;
+      --surface: #D6FC85;
+      --raised: #B3EA45;
+      --line: #8DC234;
+      --text: #15380A;
+      --muted: #3D6A1C;
+      --on-accent: #15380A;
+      --forest: #244819;
+      --sky: #5AA6E0;
+      --lilac: #A3A4FB;
+      --orange: #EE8F3F;
+      --yellow: #FFD426;
+      --moss: #244819;
+      --sky-ink: #0F4C81;
+      --lilac-ink: #3A3FA8;
+      --orange-ink: #8A3D0A;
+      --yellow-ink: #6B5200;
+      --cur: #EE8F3F;
+      --cur-ink: #8A3D0A;
+      --track-ink: var(--sky-ink);
+      --track: var(--sky);
       --rail: 80px;
       --bar: 64px;
       --display: "Fjalla One", "Arial Narrow", sans-serif;
       --body: "Instrument Sans", system-ui, sans-serif;
       --mono: "JetBrains Mono", ui-monospace, monospace;
-      color-scheme: dark;
+      color-scheme: light;
     }
 
     * {
@@ -75,11 +84,11 @@
 
     ::selection {
       background: var(--cur);
-      color: var(--ink)
+      color: var(--on-accent)
     }
 
     :focus-visible {
-      outline: 2px solid var(--cur);
+      outline: 2px solid var(--cur-ink);
       outline-offset: 3px;
       border-radius: 4px
     }
@@ -95,7 +104,7 @@
     }
 
     ::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, var(--cyan), var(--violet), var(--coral), var(--lime));
+      background: linear-gradient(180deg, var(--yellow), var(--sky), var(--orange), var(--lilac), var(--moss));
       border-radius: 99px;
       border: 3px solid var(--ink)
     }
@@ -106,7 +115,7 @@
 
     @supports not selector(::-webkit-scrollbar) {
       html {
-        scrollbar-color: var(--violet) var(--ink);
+        scrollbar-color: var(--moss) var(--ink);
         scrollbar-width: thin
       }
     }
@@ -138,7 +147,7 @@
       width: 8px;
       height: 8px;
       margin: -4px 0 0 -4px;
-      background: var(--cur);
+      background: var(--cur-ink);
       z-index: 1002
     }
 
@@ -146,7 +155,7 @@
       width: 38px;
       height: 38px;
       margin: -19px 0 0 -19px;
-      border: 1.5px solid var(--cur);
+      border: 1.5px solid var(--cur-ink);
       z-index: 1001;
       transition: opacity .3s, width .2s, height .2s, margin .2s, background .2s
     }
@@ -155,7 +164,7 @@
       width: 62px;
       height: 62px;
       margin: -31px 0 0 -31px;
-      background: color-mix(in srgb, var(--cur) 16%, transparent)
+      background: color-mix(in srgb, var(--cur) 22%, transparent)
     }
 
     .cur-ring.down {
@@ -168,7 +177,7 @@
       width: 520px;
       height: 520px;
       margin: -260px 0 0 -260px;
-      background: radial-gradient(circle, color-mix(in srgb, var(--cur) 13%, transparent), transparent 62%);
+      background: radial-gradient(circle, color-mix(in srgb, var(--cur) 26%, transparent), transparent 62%);
       z-index: 0
     }
 
@@ -186,7 +195,7 @@
       letter-spacing: .12em;
       line-height: 1.5;
       white-space: nowrap;
-      color: var(--cur);
+      color: var(--cur-ink);
       font-variant-numeric: tabular-nums
     }
 
@@ -198,6 +207,22 @@
 
     .has-cursor .cur-pos {
       opacity: 1
+    }
+
+    .on-dark .cur-dot {
+      background: var(--cur)
+    }
+
+    .on-dark .cur-ring {
+      border-color: var(--cur)
+    }
+
+    .on-dark .cur-pos {
+      color: var(--cur)
+    }
+
+    .on-dark .cur-pos b {
+      color: #A5D653
     }
 
     .cur-out .cur-dot,
@@ -229,7 +254,7 @@
       letter-spacing: .2em;
       text-transform: uppercase;
       text-align: center;
-      color: var(--muted)
+      color: #C6FA58
     }
 
     .intro .intro-top {
@@ -247,7 +272,7 @@
     .intro .intro-hint span {
       width: 1px;
       height: 36px;
-      background: linear-gradient(var(--cur), transparent);
+      background: linear-gradient(#C6FA58, transparent);
       animation: drop 1.8s infinite
     }
 
@@ -325,7 +350,7 @@
     .links a:hover,
     .links a.active,
     .caret:hover {
-      color: var(--cur)
+      color: var(--cur-ink)
     }
 
     .links a.active {
@@ -352,7 +377,7 @@
       visibility: hidden;
       transform: translateY(-6px);
       transition: .2s;
-      box-shadow: 0 18px 40px #0008
+      box-shadow: 0 18px 40px #063d0526
     }
 
     .has-pop:hover .pop,
@@ -390,12 +415,13 @@
       width: 8px;
       height: 8px;
       border-radius: 2px;
+      box-shadow: 0 0 0 1px var(--ct);
       background: var(--c)
     }
 
     .pop button:hover {
       background: var(--raised);
-      color: var(--c)
+      color: var(--ct)
     }
 
     .social {
@@ -414,7 +440,7 @@
     }
 
     .social a:hover {
-      color: var(--ink);
+      color: var(--on-accent);
       background: var(--cur);
       transform: translateY(-2px)
     }
@@ -460,7 +486,7 @@
       content: "";
       width: 36px;
       height: 1px;
-      background: var(--cur)
+      background: var(--cur-ink)
     }
 
     h1,
@@ -495,7 +521,7 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: linear-gradient(90deg, var(--ink) 46%, color-mix(in srgb, var(--ink) 30%, transparent) 76%, color-mix(in srgb, var(--ink) 45%, transparent)), linear-gradient(180deg, color-mix(in srgb, var(--ink) 55%, transparent), transparent 22%, transparent 68%, var(--ink))
+      background: linear-gradient(90deg, var(--ink) 46%, color-mix(in srgb, var(--ink) 25%, transparent) 70%, transparent 88%), linear-gradient(180deg, color-mix(in srgb, var(--ink) 60%, transparent), transparent 16%, transparent 76%, var(--ink))
     }
 
     #home h1 {
@@ -505,26 +531,15 @@
     #home h1 button {
       font: inherit;
       letter-spacing: inherit;
-      color: var(--c);
-      position: relative;
-      transition: .2s
+      color: var(--text);
+      padding: 0 .06em;
+      margin: 0 -.06em;
+      background: linear-gradient(var(--c), var(--c)) no-repeat 0 86% / 100% 34%;
+      transition: background-size .25s
     }
 
-    #home h1 button::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: .06em;
-      height: .07em;
-      background: var(--c);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform .3s
-    }
-
-    #home h1 button:hover::after {
-      transform: scaleX(1)
+    #home h1 button:hover {
+      background-size: 100% 86%
     }
 
     .lede {
@@ -553,8 +568,8 @@
     }
 
     .btn:hover {
-      border-color: var(--cur);
-      color: var(--cur)
+      border-color: var(--cur-ink);
+      color: var(--cur-ink)
     }
 
     .btn.solid {
@@ -566,7 +581,7 @@
     .btn.solid:hover {
       background: var(--cur);
       border-color: var(--cur);
-      color: var(--ink)
+      color: var(--on-accent)
     }
 
     .hint {
@@ -584,7 +599,7 @@
     .hint span {
       width: 1px;
       height: 36px;
-      background: linear-gradient(var(--cur), transparent);
+      background: linear-gradient(var(--cur-ink), transparent);
       animation: drop 1.8s infinite
     }
 
@@ -607,6 +622,23 @@
         transform: scaleY(0);
         transform-origin: bottom
       }
+    }
+
+    #about,
+    footer {
+      --ink: #244819;
+      --surface: #2D5720;
+      --raised: #376628;
+      --line: #437534;
+      --text: #C6FA58;
+      --muted: #A5D653;
+      --cur-ink: var(--cur);
+      background: var(--ink);
+      color: var(--text)
+    }
+
+    #about {
+      border-radius: 48px
     }
 
     #about h2,
@@ -647,7 +679,7 @@
     }
 
     .fact:hover {
-      border-color: var(--cur);
+      border-color: var(--cur-ink);
       transform: translateX(6px)
     }
 
@@ -693,22 +725,24 @@
       width: 8px;
       height: 8px;
       border-radius: 2px;
+      box-shadow: 0 0 0 1px var(--ct);
       background: var(--c)
     }
 
     .tab:hover {
-      color: var(--c);
-      border-color: var(--c)
+      color: var(--ct);
+      border-color: var(--ct)
     }
 
     .tab[aria-selected=true] {
       background: var(--c);
       border-color: var(--c);
-      color: var(--ink)
+      color: var(--on-accent)
     }
 
     .tab[aria-selected=true]::before {
-      background: var(--ink)
+      box-shadow: none;
+      background: var(--on-accent)
     }
 
     .aka {
@@ -726,7 +760,7 @@
       font-weight: 400;
       letter-spacing: .01em;
       text-transform: none;
-      color: var(--track);
+      color: var(--track-ink);
       margin-left: 10px
     }
 
@@ -743,7 +777,7 @@
       top: 8px;
       bottom: 8px;
       width: 2px;
-      background: linear-gradient(var(--track), var(--line))
+      background: linear-gradient(var(--track-ink), var(--line))
     }
 
     .item {
@@ -762,20 +796,20 @@
       height: 14px;
       border-radius: 50%;
       background: var(--ink);
-      border: 2px solid var(--track);
+      border: 2px solid var(--track-ink);
       transition: .2s
     }
 
     .item:hover::before {
       background: var(--track);
-      box-shadow: 0 0 0 6px color-mix(in srgb, var(--track) 22%, transparent)
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--track) 30%, transparent)
     }
 
     .item time {
       font-family: var(--mono);
       font-size: .76rem;
       letter-spacing: .14em;
-      color: var(--track)
+      color: var(--track-ink)
     }
 
     .item h3 {
@@ -804,6 +838,23 @@
       color: var(--muted)
     }
 
+    .item .more {
+      display: inline-block;
+      margin: 10px 0 0 12px;
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--track-ink);
+      border-bottom: 1px solid var(--track-ink);
+      transition: .2s
+    }
+
+    .item .more:hover {
+      color: var(--text);
+      border-color: var(--text)
+    }
+
     .item ul {
       color: var(--muted);
       max-width: 620px;
@@ -823,7 +874,7 @@
       top: .7em;
       width: 8px;
       height: 2px;
-      background: var(--track)
+      background: var(--track-ink)
     }
 
     .gallery-head {
@@ -845,7 +896,7 @@
       font-size: .72rem;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--track)
+      color: var(--track-ink)
     }
 
     .gallery {
@@ -873,7 +924,7 @@
     }
 
     button.shot:hover {
-      border-color: var(--track);
+      border-color: var(--track-ink);
       transform: translateY(-4px)
     }
 
@@ -889,7 +940,7 @@
       padding: 22px 12px 10px;
       text-align: left;
       font-size: .82rem;
-      color: var(--text);
+      color: #FAF6E9;
       background: linear-gradient(transparent, #000c)
     }
 
@@ -912,7 +963,7 @@
     .shot.missing span {
       background: none;
       text-align: center;
-      color: var(--track)
+      color: var(--track-ink)
     }
 
     #light {
@@ -975,7 +1026,7 @@
       left: 0;
       top: 0;
       width: 100%;
-      background: var(--cur);
+      background: var(--cur-ink);
       border-radius: 2px
     }
 
@@ -999,7 +1050,7 @@
 
     .index a:hover,
     .index a.active {
-      color: var(--cur)
+      color: var(--cur-ink)
     }
 
     .index a.active {
@@ -1037,12 +1088,12 @@
       width: 7px;
       height: 7px;
       border-radius: 2px;
-      border: 1.5px solid var(--c)
+      border: 1.5px solid var(--ct)
     }
 
     .index .sub button:hover,
     .index .sub button.on {
-      color: var(--c)
+      color: var(--ct)
     }
 
     .index .sub button.on::before {
@@ -1052,8 +1103,7 @@
     footer {
       position: relative;
       z-index: 1;
-      border-top: 1px solid var(--line);
-      background: var(--surface);
+      border-radius: 48px 48px 0 0;
       padding: 88px clamp(20px, 6vw, 96px) 28px;
       transition: padding-left .45s cubic-bezier(.7, 0, .2, 1);
       overflow: hidden
@@ -1069,7 +1119,7 @@
 
     footer .big em {
       font-style: normal;
-      color: var(--cur)
+      color: var(--orange)
     }
 
     .mail {
@@ -1083,8 +1133,8 @@
     }
 
     .mail:hover {
-      color: var(--cur);
-      border-color: var(--cur)
+      color: var(--cur-ink);
+      border-color: var(--cur-ink)
     }
 
     .fcols {
@@ -1118,7 +1168,7 @@
 
     .fcols a:hover,
     .fcols button:hover {
-      color: var(--cur)
+      color: var(--cur-ink)
     }
 
     .fcols .social {
@@ -1131,6 +1181,11 @@
       width: 44px;
       height: 44px;
       border-radius: 50%
+    }
+
+    .fcols .social a:hover {
+      color: var(--on-accent);
+      border-color: var(--cur)
     }
 
     .fine {
@@ -1148,7 +1203,7 @@
 
     .fine button:hover,
     .fine a:hover {
-      color: var(--cur)
+      color: var(--cur-ink)
     }
 
     .stripe {
@@ -1157,7 +1212,7 @@
       right: 0;
       top: -1px;
       height: 3px;
-      background: linear-gradient(90deg, var(--cyan), var(--violet), var(--coral), var(--lime))
+      background: linear-gradient(90deg, var(--yellow), var(--sky), var(--orange), var(--lilac), var(--moss))
     }
 
     dialog {
@@ -1173,7 +1228,7 @@
     }
 
     dialog::backdrop {
-      background: #05060acc;
+      background: #15380a99;
       backdrop-filter: blur(6px)
     }
 
@@ -1212,8 +1267,8 @@
     }
 
     .x:hover {
-      border-color: var(--cur);
-      color: var(--cur)
+      border-color: var(--cur-ink);
+      color: var(--cur-ink)
     }
 
     .swatches {
@@ -1232,7 +1287,7 @@
     }
 
     .sw:hover {
-      border-color: var(--cur);
+      border-color: var(--cur-ink);
       transform: translateY(-3px)
     }
 
@@ -1394,7 +1449,7 @@
       }
 
       #home::after {
-        background: linear-gradient(180deg, color-mix(in srgb, var(--ink) 78%, transparent) 60%, var(--ink))
+        background: linear-gradient(180deg, color-mix(in srgb, var(--ink) 84%, transparent) 60%, var(--ink))
       }
 
       .links a {
@@ -1479,8 +1534,8 @@
           <use class="hole" href="#hshape" fill="#000" />
         </mask>
       </defs>
-      <rect width="100%" height="100%" fill="#0B0D12" mask="url(#hmask)" />
-      <use class="hole" href="#hshape" fill="none" stroke="var(--cur)" stroke-width="1.5" />
+      <rect width="100%" height="100%" fill="#15380A" mask="url(#hmask)" />
+      <use class="hole" href="#hshape" fill="none" stroke="#C6FA58" stroke-width="1.5" />
     </svg>
     <p class="intro-top">Hung — Portfolio 2026</p>
     <p class="intro-hint">Scroll to enter<span></span></p>
@@ -1495,10 +1550,10 @@
         <a href="#career" data-go="career">Career</a>
         <button class="caret" aria-label="Career menu" aria-expanded="false">▾</button>
         <div class="pop">
-          <button data-track="robotics" style="--c:var(--cyan)">Robotics</button>
-          <button data-track="poem" style="--c:var(--violet)">Poem</button>
-          <button data-track="rap" style="--c:var(--coral)">Rap</button>
-          <button data-track="code" style="--c:var(--lime)">Code</button>
+          <button data-track="robotics" style="--c:var(--sky);--ct:var(--sky-ink)">Robotics</button>
+          <button data-track="poem" style="--c:var(--lilac);--ct:var(--lilac-ink)">Poem</button>
+          <button data-track="rap" style="--c:var(--orange);--ct:var(--orange-ink)">Rap</button>
+          <button data-track="code" style="--c:var(--yellow);--ct:var(--yellow-ink)">Code</button>
         </div>
       </li>
     </ul>
@@ -1529,10 +1584,10 @@
       <li>
         <a href="#career" data-go="career"><b>03</b>Career</a>
         <div class="sub">
-          <button data-track="robotics" style="--c:var(--cyan)">Robotics</button>
-          <button data-track="poem" style="--c:var(--violet)">Poem</button>
-          <button data-track="rap" style="--c:var(--coral)">Rap</button>
-          <button data-track="code" style="--c:var(--lime)">Code</button>
+          <button data-track="robotics" style="--c:var(--sky);--ct:var(--sky-ink)">Robotics</button>
+          <button data-track="poem" style="--c:var(--lilac);--ct:var(--lilac-ink)">Poem</button>
+          <button data-track="rap" style="--c:var(--orange);--ct:var(--orange-ink)">Rap</button>
+          <button data-track="code" style="--c:var(--yellow);--ct:var(--yellow-ink)">Code</button>
         </div>
       </li>
     </ol>
@@ -1540,21 +1595,21 @@
 
   <main>
     <div class="pin">
-      <section id="home">
-        <div class="wrap">
-          <p class="eyebrow">Portfolio — 2026</p>
-          <h1>Hung builds <button data-track="robotics" style="--c:var(--cyan)">robots</button>, writes <button
-              data-track="poem" style="--c:var(--violet)">poems</button>, drops <button data-track="rap"
-              style="--c:var(--coral)">bars</button> and ships <button data-track="code"
-              style="--c:var(--lime)">code</button>.</h1>
-          <p class="lede">Four crafts, one person. Pick a word above to jump straight to that part of the story.</p>
-          <div class="cta">
-            <a class="btn solid" href="#career" data-go="career">See the timeline</a>
-            <a class="btn" href="#about" data-go="about">About me</a>
-          </div>
-          <p class="hint"><span></span>Scroll</p>
+    <section id="home">
+      <div class="wrap">
+        <p class="eyebrow">Portfolio — 2026</p>
+        <h1>Hung builds <button data-track="robotics" style="--c:var(--sky);--ct:var(--sky-ink)">robots</button>, writes <button
+            data-track="poem" style="--c:var(--lilac);--ct:var(--lilac-ink)">poems</button>, drops <button data-track="rap"
+            style="--c:var(--orange);--ct:var(--orange-ink)">bars</button> and ships <button data-track="code"
+            style="--c:var(--yellow);--ct:var(--yellow-ink)">code</button>.</h1>
+        <p class="lede">Four crafts, one person. Pick a word above to jump straight to that part of the story.</p>
+        <div class="cta">
+          <a class="btn solid" href="#career" data-go="career">See the timeline</a>
+          <a class="btn" href="#about" data-go="about">About me</a>
         </div>
-      </section>
+        <p class="hint"><span></span>Scroll</p>
+      </div>
+    </section>
     </div>
 
     <section id="about">
@@ -1587,10 +1642,10 @@
         <p class="eyebrow">03 — Career</p>
         <h2>The timeline.</h2>
         <div class="tabs" role="tablist">
-          <button class="tab" role="tab" data-track="robotics" style="--c:var(--cyan)">Robotics</button>
-          <button class="tab" role="tab" data-track="poem" style="--c:var(--violet)">Poem</button>
-          <button class="tab" role="tab" data-track="rap" style="--c:var(--coral)">Rap</button>
-          <button class="tab" role="tab" data-track="code" style="--c:var(--lime)">Code</button>
+          <button class="tab" role="tab" data-track="robotics" style="--c:var(--sky);--ct:var(--sky-ink)">Robotics</button>
+          <button class="tab" role="tab" data-track="poem" style="--c:var(--lilac);--ct:var(--lilac-ink)">Poem</button>
+          <button class="tab" role="tab" data-track="rap" style="--c:var(--orange);--ct:var(--orange-ink)">Rap</button>
+          <button class="tab" role="tab" data-track="code" style="--c:var(--yellow);--ct:var(--yellow-ink)">Code</button>
         </div>
         <p class="aka" hidden></p>
         <div class="timeline" role="tabpanel" aria-live="polite"></div>
@@ -1671,8 +1726,7 @@
       <div class="swatches" id="accents"></div>
       <h3>Type</h3>
       <div class="type-row"><span>Display</span>
-        <div style="font-family:var(--display);font-weight:400;font-size:1.8rem;letter-spacing:.01em">Fjalla One 400
-        </div>
+        <div style="font-family:var(--display);font-weight:400;font-size:1.8rem;letter-spacing:.01em">Fjalla One 400</div>
       </div>
       <div class="type-row"><span>Body</span>
         <div>Instrument Sans 400 — paragraphs and descriptions.</div>
@@ -1685,10 +1739,8 @@
       <ul class="rules">
         <li><strong>90 / 10.</strong> Neutrals carry the page; accents appear only on things you can act on or on the
           active craft.</li>
-        <li><strong>One accent per craft.</strong> Cyan is robotics, violet is poem, coral is rap, lime is code — never
-          swap them.</li>
-        <li><strong>Accent as fill needs Ink text.</strong> All four accents pass contrast with Ink on top, not with
-          white.</li>
+        <li><strong>One accent per craft.</strong> Sky is robotics, lilac is poem, orange is rap, yellow is code — never swap them.</li>
+        <li><strong>Fills and inks.</strong> Bright accents are for fills, highlights and lines. Coloured text uses the matching ink shade. Text on a bright fill is always the dark Text colour.</li>
         <li><strong>The pointer owns hover.</strong> Hovered elements take the pointer's current colour, so hover never
           needs its own shade.</li>
       </ul>
@@ -1698,7 +1750,7 @@
   <script>
     const tracks = {
       robotics: {
-        color: '--cyan', images: [
+        color: '--sky', images: [
           { src: 'images/robotics/1.jpg', caption: 'Vietnam VEX Robotics National Championship' },
           { src: 'images/robotics/2.jpg', caption: 'Sportsmanship Award, 2022–2023' },
           { src: 'images/robotics/3.jpg', caption: 'The team in Cyber Vikings, Bangkok, Thailand' }
@@ -1708,28 +1760,28 @@
         ]
       },
       poem: {
-        color: '--violet', aka: ['Pen name', 'Wvin.'], images: [
+        color: '--lilac', aka: ['Pen name', 'Wvin.'], images: [
           { src: 'images/poem/1.jpg', caption: 'Vạn tiếng lòng vang vọng tiếng nàng' },
           { src: 'images/poem/2.jpg', caption: 'Vạn tiếng lòng vang vọng tiếng nàng' },
           { src: 'images/poem/3.jpg', caption: 'Yêu' },
           { src: 'images/poem/4.jpg', caption: 'Yêu' }
         ], items: [
-          { year: '2026', title: 'Second co-authored book', text: '“Yêu”, published by Skybooks.', meta: 'Co-author' },
+          { year: '2026', title: 'Second co-authored book', text: '“Yêu”, published by Skybooks.', meta: 'Co-author', link: { href: 'https://skybooks.vn/yeu', label: 'View book' } },
           { year: '2023', title: 'First co-authored book', text: '“Vạn tiếng lòng vang vọng tiếng nàng”, published by Deepbooks, a subsidiary publisher of Skybooks.', meta: 'Co-author' },
           { year: 'Ongoing', title: 'Freelance author', text: 'Writing across many poem communities.' }
         ]
       },
       rap: {
-        color: '--coral', aka: ['Rap name', 'HwngG'], images: [
+        color: '--orange', aka: ['Rap name', 'HwngG'], images: [
           { src: 'images/rap/1.jpg', caption: 'On stage' }
         ], items: [
           { year: '2026', title: '100k total views', text: 'YouTube channel passed 100k views in total.', meta: 'YouTube' },
-          { year: '2025', title: 'First track at 50k views', text: 'First rap track reached 50k views on YouTube.', meta: 'YouTube' },
+          { year: '2025', title: 'First track at 50k views', text: 'First rap track reached 50k views on YouTube.', meta: 'YouTube', link: { href: 'https://www.youtube.com/watch?v=rxor7vCOFLs', label: 'Watch track' } },
           { year: '2019', title: 'Career start', text: 'Started rapping.' }
         ]
       },
       code: {
-        color: '--lime', images: [], items: [
+        color: '--yellow', images: [], items: [
           { year: '20XX', title: '', text: '', meta: '' },
           { year: '20XX', title: '', text: '', meta: '' },
           { year: '20XX', title: '', text: '', meta: '' }
@@ -1830,7 +1882,8 @@
       aka.hidden = !t.aka;
       if (t.aka) aka.innerHTML = `${t.aka[0]} <strong>${t.aka[1]}</strong>`;
       root.style.setProperty('--track', `var(${t.color})`);
-      timeline.innerHTML = t.items.map((it, i) => `<article class="item" style="--i:${i}"><time>${it.year}</time><h3>${it.title}</h3>${it.text ? `<p>${it.text}</p>` : ''}${it.points ? `<ul>${it.points.map(p => `<li>${p}</li>`).join('')}</ul>` : ''}${it.meta ? `<span class="meta">${it.meta}</span>` : ''}</article>`).join('');
+      root.style.setProperty('--track-ink', `var(${t.color}-ink)`);
+      timeline.innerHTML = t.items.map((it, i) => `<article class="item" style="--i:${i}"><time>${it.year}</time><h3>${it.title}</h3>${it.text ? `<p>${it.text}</p>` : ''}${it.points ? `<ul>${it.points.map(p => `<li>${p}</li>`).join('')}</ul>` : ''}${it.meta ? `<span class="meta">${it.meta}</span>` : ''}${it.link ? `<a class="more" href="${it.link.href}" target="_blank" rel="noopener">${it.link.label} ↗</a>` : ''}</article>`).join('');
       $$('.tab').forEach(b => b.setAttribute('aria-selected', b.dataset.track === name));
       $$('.index .sub button').forEach(b => b.classList.toggle('on', b.dataset.track === name));
       renderGallery();
@@ -1869,8 +1922,9 @@
     const rev = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rev.unobserve(e.target) } }), { threshold: .15 });
     $$('.reveal').forEach(el => rev.observe(el));
 
-    const stops = ['#22D3EE', '#8B6CFF', '#FF6B5E', '#B8F53D'].map(h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)));
-    function colourAt(t) {
+    const rgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+    const stops = ['#5AA6E0', '#A3A4FB', '#EE8F3F', '#FFD426'].map(rgb), inkStops = ['#0F4C81', '#3A3FA8', '#8A3D0A', '#6B5200'].map(rgb);
+    function colourAt(t, stops) {
       t = ((t % 1) + 1) % 1 * stops.length;
       const i = Math.floor(t), f = t - i, a = stops[i], b = stops[(i + 1) % stops.length];
       return `rgb(${a.map((v, k) => Math.round(v + (b[k] - v) * f)).join(',')})`;
@@ -1885,12 +1939,15 @@
       addEventListener('pointermove', e => {
         x = e.clientX; y = e.clientY;
         root.classList.remove('cur-out');
+        root.classList.toggle('on-dark', !introDone || !!e.target.closest('#about, footer'));
         place(dot, x, y); place(glow, x, y);
         const flipX = x > innerWidth - 110, flipY = y > innerHeight - 60;
         place(pos, x - (flipX ? 110 : 0), y - (flipY ? 70 : 0));
         pos.innerHTML = `<b>X</b>${pad(x)}<br><b>Y</b>${pad(y)}`;
         if (reduce) place(ring, x, y);
-        root.style.setProperty('--cur', colourAt(x / innerWidth * .75 + (y + scrollY) / innerHeight * .35));
+        const ct = x / innerWidth * .75 + (y + scrollY) / innerHeight * .35;
+        root.style.setProperty('--cur', colourAt(ct, stops));
+        root.style.setProperty('--cur-ink', colourAt(ct, inkStops));
         ring.classList.toggle('on', !!e.target.closest('a,button,.fact,.item,.shot'));
       });
       addEventListener('pointerdown', () => ring.classList.add('down'));
@@ -1900,8 +1957,8 @@
     }
 
     const kit = {
-      neutrals: [['Ink', '#0B0D12', 'Page background'], ['Surface', '#141821', 'Cards, footer, menus'], ['Raised', '#1B2130', 'Hover and active fills'], ['Line', '#2A3142', 'Borders and dividers'], ['Muted', '#8D96AB', 'Secondary text, labels'], ['Text', '#E9EDF5', 'Headings and body']],
-      accents: [['Cyan', '#22D3EE', 'Robotics'], ['Violet', '#8B6CFF', 'Poem'], ['Coral', '#FF6B5E', 'Rap'], ['Lime', '#B8F53D', 'Code']]
+      neutrals: [['Lime', '#C6FA58', 'Page background, text on forest'], ['Surface', '#D6FC85', 'Cards and menus'], ['Raised', '#B3EA45', 'Hover and active fills'], ['Line', '#8DC234', 'Borders and dividers'], ['Muted', '#3D6A1C', 'Secondary text, labels'], ['Deep green', '#15380A', 'Text, buttons, intro'], ['Forest', '#244819', 'About and footer blocks']],
+      accents: [['Sky', '#5AA6E0', 'Robotics fill'], ['Lilac', '#A3A4FB', 'Poem fill'], ['Orange', '#EE8F3F', 'Rap fill'], ['Yellow', '#FFD426', 'Code fill'], ['Sky ink', '#0F4C81', 'Robotics text'], ['Lilac ink', '#3A3FA8', 'Poem text'], ['Orange ink', '#8A3D0A', 'Rap text'], ['Yellow ink', '#6B5200', 'Code text']]
     };
     for (const g in kit) $('#' + g).innerHTML = kit[g].map(([n, h, u]) => `<button class="sw" data-hex="${h}" style="--c:${h}"><i></i><div><strong>${n}</strong><code>${h}</code><small>${u}</small></div></button>`).join('');
     $$('.sw').forEach(s => s.addEventListener('click', async () => {
