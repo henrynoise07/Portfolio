@@ -1,12 +1,8 @@
 # Hung — Portfolio
 
-https://henrynoise07.github.io/Portfolio/
-
-Personal portfolio for me
-
 ## Tech
 
-One static `index.html` with inline CSS and vanilla JavaScript. No framework, no build step. Fonts load from Google Fonts: Bricolage Grotesque, Instrument Sans and JetBrains Mono.
+One static `index.html` with inline CSS and vanilla JavaScript. No framework, no build step. Fonts load from Google Fonts: Fjalla One, Instrument Sans and JetBrains Mono.
 
 ## Project structure
 
@@ -25,13 +21,18 @@ One static `index.html` with inline CSS and vanilla JavaScript. No framework, no
 
 | Role | Hex |
 |---|---|
-| Ink (background) | `#0B0D12` |
-| Surface | `#141821` |
-| Raised | `#1B2130` |
-| Line | `#2A3142` |
-| Muted | `#8D96AB` |
-| Text | `#E9EDF5` |
-| Cyan — Robotics | `#22D3EE` |
-| Violet — Poem | `#8B6CFF` |
-| Coral — Rap | `#FF6B5E` |
-| Lime — Code | `#B8F53D` |
+| Lime (background) | `#C6FA58` |
+| Surface | `#D6FC85` |
+| Raised | `#B3EA45` |
+| Line | `#8DC234` |
+| Muted | `#3D6A1C` |
+| Deep green (text) | `#15380A` |
+| Forest (About, footer) | `#244819` |
+| Sky — Robotics | `#5AA6E0` (text `#0F4C81`) |
+| Lilac — Poem | `#A3A4FB` (text `#3A3FA8`) |
+| Orange — Rap | `#EE8F3F` (text `#8A3D0A`) |
+| Yellow — Code | `#FFD426` (text `#6B5200`) |
+
+## Links
+
+[GitHub](https://github.com/henrynoise07) · [LinkedIn](https://www.linkedin.com/in/tracdogiahung) · [YouTube](https://www.youtube.com/@wvin.vietnam) · [Instagram](https://www.instagram.com/_hwng.g_) · [Facebook](https://www.facebook.com/tracdogiahung)
